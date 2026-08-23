@@ -67,3 +67,14 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# OCaml & Dune
+_build/
+.dune/
+*.install
+*.merlin
+*.cmx
+*.cmi
+*.cmo
+*.o
+*.a
