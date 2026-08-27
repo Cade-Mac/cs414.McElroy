@@ -6,41 +6,40 @@ type nat =
 let rec to_int : nat -> int = function
   | Z -> 0
   | S n -> 1 + to_int n
-
-(* Adds two Peano numbers x and y *)  
+  
 let rec add : nat -> nat -> nat = fun x y ->
-  match x with
-  | Z -> y                                    (* Base case: 0 + y is just y *)
-  | S x_prev -> S (add x_prev y)              (* Strips outer S from x, adds remaining x_prev to y, wraps result in S *)
+  match x with 
+  | Z -> y
+  | S n -> S (add n y)
 
-(* Peano Multiplication *)
-let rec mult : nat -> nat -> nat = fun x y ->
+  (* Peano Multiplication *)
+let rec mul : nat -> nat -> nat = fun x y ->
   match x with
-  | Z -> Z                                    (* Base case: 0 * y is Z (0) *)
-  | S x_prev -> add y (mult x_prev y)         (* Strips outer S from x, recursively multiplies remaining x_prev by y, then adds one copy of y *)
+  | Z -> Z
+  | S n -> add y (mul n y)
 
-(* Peano Subtraction *)
+  (* Peano Subtraction*)
 let rec sub : nat -> nat -> nat = fun x y ->
-    match x, y with
-    | x, Z -> x                               (* Base case: x - 0 is x *)
-    | S x_prev, S y_prev -> sub x_prev y_prev (* Strips outer S from both x and y, recursively subtracts remaining values *)
-    | Z, S _ -> Z (* If y is greater than x, return Z *)
+ match x, y with
+ | x, Z -> x
+ | S x_prev, S y_prev -> sub x_prev y_prev
+ | Z, S _ -> Z  (* If y is greater than x, return Z *)
 
-(* Peano Comparison *)
+  (* Peano Comparison *)
 let rec is_less : nat -> nat -> bool = fun x y ->
   match x, y with
-  | Z, S _ -> true                            (* If x runs out of S shells first while y still has S shells, x is less than y *)
-  | Z, Z -> false                             (* If both hit Z at the exact same time, x is equal to y, so it is NOT less than y *)
-  | S _, Z -> false                           (* If y runs out of S shells first while x still has S shells, x is greater than y *)
-  | S x_prev, S y_prev -> is_less x_prev y_prev (* Strips one S shell off both numbers and recursively compares remaining values *)
+  | Z, S _ -> true
+  | Z, Z -> false
+  | S _, Z -> false
+  | S x_prev, S y_prev -> is_less x_prev y_prev
 
-(* Peano Division *)
+  (* Peano Division *)
 let rec div : nat -> nat -> nat = fun dividend divisor ->
   match divisor with
-  | Z -> invalid_arg "division by zero :("
+  | Z -> invalid_arg "Division by zero :("
   | S _ ->
-      if is_less dividend divisor then Z      (* Base case: If dividend is smaller than divisor, dividend / divisor is 0 *)
-      else S (div (sub dividend divisor) divisor) (* Subtracts divisor from dividend, recursively divides remainder, and counts step with S *)
+    if is_less dividend divisor then Z
+    else S (div (sub dividend divisor) divisor)
 
 (* Test *)
 let () =
@@ -85,4 +84,4 @@ try
     print_int (to_int (div four zero)) (* Expected: Error *)
     with Invalid_argument msg ->
     print_string ("Error: " ^ msg);
-  print_newline ();
+  print_newline ();  
