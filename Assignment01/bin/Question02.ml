@@ -112,3 +112,45 @@ let rec string_of_tree t =
       "Node(" ^ string_of_int v ^ ", "
       ^ string_of_tree left ^ ", "
       ^ string_of_tree right ^ ")"
+
+let rec prune : binary_tree -> binary_tree = fun tree ->
+  match tree with
+  | Empty -> Empty
+  | Node (_, Empty, Empty) -> Empty  (* Prune leaf nodes *)
+  | Node (value, left, right) -> 
+      Node (value, prune left, prune right)
+
+let rec level_helper : binary_tree list -> int list = fun queue ->
+  match queue with
+  | [] -> []
+  | Empty :: rest -> level_helper rest
+  | Node (value, left, right) :: rest ->
+      value :: level_helper (rest @ [left; right])
+
+let level_traversal : binary_tree -> int list = fun tree -> 
+  level_helper [tree]
+
+let () =
+  let test_tree =
+    Node (1,
+          Node (2, Empty, Empty),
+          Node (3,
+                Node (4, Empty, Empty),
+                Empty))
+  in
+
+  print_endline "=== Testing Level-Order Traversal ===";
+
+  (* Test level_traversal directly *)
+  (* Expected output: 1 2 3 4 *)
+  print_string "level_traversal result: ";
+  let traversal_result = level_traversal test_tree in
+  List.iter (fun v -> print_int v; print_string " ") traversal_result;
+  print_newline ();
+
+  (* Test level_helper directly with a list of nodes *)
+  (* Expected output: 1 2 3 4 *)
+  print_string "level_helper [test_tree] result: ";
+  let helper_result = level_helper [test_tree] in
+  List.iter (fun v -> print_int v; print_string " ") helper_result;
+  print_newline ()
