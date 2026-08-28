@@ -1,6 +1,6 @@
 (lang dune 3.24)
 
-(name assignment1)
+(name Assignment01)
 
 (generate_opam_files true)
 
@@ -16,7 +16,8 @@
 (documentation https://url/to/documentation)
 
 (package
- (name assignment1)
+ (name Assignment01)
+ (allow_empty)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml)

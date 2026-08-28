@@ -13,10 +13,10 @@ let rec add : nat -> nat -> nat = fun x y ->
   | S n -> S (add n y)
 
   (* Peano Multiplication *)
-let rec mul : nat -> nat -> nat = fun x y ->
+let rec mult : nat -> nat -> nat = fun x y ->
   match x with
   | Z -> Z
-  | S n -> add y (mul n y)
+  | S n -> add y (mult n y)
 
   (* Peano Subtraction*)
 let rec sub : nat -> nat -> nat = fun x y ->
@@ -82,6 +82,6 @@ let () =
 print_string ("4 / 0 = ");
 try 
     print_int (to_int (div four zero)) (* Expected: Error *)
-    with Invalid_argument msg ->
+    with Invalid_argument msg->
     print_string ("Error: " ^ msg);
   print_newline ();  
