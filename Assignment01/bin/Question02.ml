@@ -112,3 +112,4 @@ let rec string_of_tree t =
       "Node(" ^ string_of_int v ^ ", "
       ^ string_of_tree left ^ ", "
       ^ string_of_tree right ^ ")"
+
