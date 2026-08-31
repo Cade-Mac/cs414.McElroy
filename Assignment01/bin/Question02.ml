@@ -93,9 +93,9 @@ let bfs tree =
   let rec aux queue acc =
     match queue with
     | [] -> List.rev acc
-    | Empty :: tl -> aux tl acc
-    | Node (value, left, right) :: tl ->
-        aux (tl @ [left; right]) (value :: acc)
+    | Empty :: rest -> aux rest acc
+    | Node (value, left, right) :: rest ->
+        aux (rest @ [left; right]) (value :: acc)
   in
   aux [tree] []
 
@@ -127,7 +127,7 @@ let rec level_helper : binary_tree list -> int list = fun queue ->
   | Node (value, left, right) :: rest ->
       value :: level_helper (rest @ [left; right])
 
-let level_traversal : binary_tree -> int list = fun tree -> 
+let level_traversal : binary_tree -> int list = fun tree ->
   level_helper [tree]
 
 let () =
