@@ -1,7 +1,7 @@
 /*
  * Parser.cpp
  * Assignment 03
- * Hand-built recursive descent parser for shell commands
+ * Recursive descent parser for shell commands
  */
 
 #include <iostream>
