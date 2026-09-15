@@ -263,7 +263,7 @@ void printAST(const ASTNode& node) {
 // Entry point main function
 int main() {
     std::cout << "==========================================" << std::endl;
-    std::cout << "  CS 414 ASSIGNMENT 03: PARSER TEST SUITE" << std::endl;
+    std::cout << "        PARSER TEST SUITE" << std::endl;
     std::cout << "==========================================" << std::endl;
 
     std::vector<std::string> test_commands = {
