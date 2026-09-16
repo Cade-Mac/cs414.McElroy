@@ -135,7 +135,7 @@ public:
     }
 };
 
-// Recursive Descent Parser mirroring instructor style
+// Recursive Descent Parser mirroring sample file
 class Parser {
 public:
     explicit Parser(Tokenizer& tokenizer) : tokenizer(tokenizer) {}
