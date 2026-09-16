@@ -1,5 +1,5 @@
 /*
- * Parser.cpp
+ * parser.cpp
  * Assignment 03
  * Recursive descent parser for shell commands
  */
