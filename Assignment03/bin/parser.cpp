@@ -266,6 +266,7 @@ int main() {
     std::cout << "        PARSER TEST SUITE" << std::endl;
     std::cout << "==========================================" << std::endl;
 
+    // Test data for the parser
     std::vector<std::string> test_commands = {
         "ls",
         "ls \\DOCS",
