@@ -1,7 +1,26 @@
 /*
+* Cade McElroy
  * parser.cpp
  * Assignment 03
  * Recursive descent parser for shell commands
+ * 
+ * ==========================================================================================
+ * EBNF Grammar Specification for Shell Commands:
+ * 
+ * Command     ::= LsCmd | CdCmd | CatCmd | PrintCmd | ExecCmd ;
+ * 
+ * LsCmd       ::= "ls" [ Path | Filename ] ;
+ * CdCmd       ::= "cd" [ Path ] ;
+ * CatCmd      ::= "cat" ( Path | Filename ) ;
+ * PrintCmd    ::= "print" ( Path | Filename ) ;
+ * ExecCmd     ::= "exec" ( Path | Filename ) ;
+ * 
+ * Path        ::= "\" { Char } ;
+ * Filename    ::= Name "." Ext ;
+ * Name        ::= 1*8( Alphanumeric ) ;
+ * Ext         ::= 3( Alphanumeric ) ;
+ * =========================================================================================
+ * 
  */
 
 #include <iostream>
