@@ -1,0 +1,148 @@
+================================================================
+
+   CS 414 Assignment 04/05 Shell Parser Output Testing
+
+================================================================
+
+shell> set $X = $10 + $2 * 3
+[ERROR] Lexer error: invalid token or filename '3'
+shell> set $X = $10 + $2 * $3
+[AST Node] Command: SetCommand | Argument: "$X" | Expr Tree: "($10 + ($2 * $3))"
+
+  [ SYMBOL TABLE ]
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> set $Y = ($A + $B) * $C
+[AST Node] Command: SetCommand | Argument: "$Y" | Expr Tree: "(($A + $B) * $C)"
+
+  [ SYMBOL TABLE ]
+  $Y = (($A + $B) * $C)
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> echo $X
+[AST Node] Command: EchoCommand | Expr Tree: "$X"
+
+  [ SYMBOL TABLE ]
+  $Y = (($A + $B) * $C)
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> cd \docs\folder1
+[AST Node] Command: CdCommand | Argument: "\docs\folder1"
+
+  [ SYMBOL TABLE ]
+  $Y = (($A + $B) * $C)
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> cat notes.txt
+[AST Node] Command: CatCommand | Argument: "notes.txt"
+
+  [ SYMBOL TABLE ]
+  $Y = (($A + $B) * $C)
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> cat $X
+[AST Node] Command: CatCommand | Argument: "$X"
+
+  [ SYMBOL TABLE ]
+  $Y = (($A + $B) * $C)
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> cat
+[ERROR] 'cat' requires a filename, path, or $VARIABLE
+shell> cd
+[AST Node] Command: CdCommand
+
+  [ SYMBOL TABLE ]
+  $Y = (($A + $B) * $C)
+  $X = ($10 + ($2 * $3))
+  ----------------
+
+shell> cd cat
+[ERROR] Syntax error: unexpected tokens after 'cd' command
+shell> cat cd
+[ERROR] 'cat' requires a filename, path, or $VARIABLE
+shell> exit
+
+shell> ls
+[AST Node] Command: LsCommand
+
+  [ SYMBOL TABLE ]
+  (empty)
+  ----------------
+
+shell> ls =
+[ERROR] Syntax error: unexpected tokens after 'ls' command
+shell> cd =
+[ERROR] Syntax error: unexpected tokens after 'cd' command
+shell> cat = 
+[ERROR] 'cat' requires a filename, path, or $VARIABLE
+shell> cd \doc=s
+[ERROR] Lexer error: invalid token or filename 's'
+shell> cd \docs
+[AST Node] Command: CdCommand | Argument: "\docs"
+
+  [ SYMBOL TABLE ]
+  (empty)
+  ----------------
+
+shell> cd docs
+[ERROR] Lexer error: invalid token or filename 'docs'
+shell> cd \\docs
+[AST Node] Command: CdCommand | Argument: "\\docs"
+
+  [ SYMBOL TABLE ]
+  (empty)
+  ----------------
+shell> set $x=$1
+[AST Node] Command: SetCommand | Argument: "$x" | Expr Tree: "$1"
+
+  [ SYMBOL TABLE ]
+  $x = $1
+  ----------------
+
+shell> set $x=$1+1
+[ERROR] Lexer error: invalid token or filename '1'
+shell> set $x=$1+$1
+[AST Node] Command: SetCommand | Argument: "$x" | Expr Tree: "($1 + $1)"
+
+  [ SYMBOL TABLE ]
+  $x = ($1 + $1)
+  ----------------
+
+shell> echo x
+[ERROR] Lexer error: invalid token or filename 'x'
+shell> echo $x
+[AST Node] Command: EchoCommand | Expr Tree: "$x"
+
+  [ SYMBOL TABLE ]
+  $x = ($1 + $1)
+  ----------------
+
+shell> set $x = $1 + $11 / $3
+[AST Node] Command: SetCommand | Argument: "$x" | Expr Tree: "($1 + ($11 / $3))"
+
+  [ SYMBOL TABLE ]
+  $x = ($1 + ($11 / $3))
+  ----------------
+
+shell> set $x = $1 + $12 / $3
+[AST Node] Command: SetCommand | Argument: "$x" | Expr Tree: "($1 + ($12 / $3))"
+
+  [ SYMBOL TABLE ]
+  $x = ($1 + ($12 / $3))
+  ----------------
+
+shell> echo $x
+[AST Node] Command: EchoCommand | Expr Tree: "$x"
+
+  [ SYMBOL TABLE ]
+  $x = ($1 + ($12 / $3))
+  ----------------
+
+shell> exit

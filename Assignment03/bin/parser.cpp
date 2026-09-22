@@ -122,7 +122,7 @@ std::vector<Token> tokenize(const std::string& input) {
                     }
                 }
             }
-            throw std::runtime_error("Lexer error: invalid token or filename '" + word + "'");
+            throw std::runtime_error("Error: invalid token or filename '" + word + "'");
         }
     }
 
