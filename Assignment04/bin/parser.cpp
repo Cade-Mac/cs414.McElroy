@@ -1,7 +1,8 @@
 /*
- * Course: CS 414 - Assignment 04
- * Purpose: Extended Shell Command Parser with Variables, Expression Parsing, and Symbol Table
- * Author: Cade McElroy
+ * CS 414 
+ * Assignment 04
+ * Extended Shell Command Parser with Variables, Expression Parsing, and Symbol Table
+ * Cade McElroy
  * 
  * =========================================================================================
  * EBNF Grammar Specification for Extended Shell Commands:
