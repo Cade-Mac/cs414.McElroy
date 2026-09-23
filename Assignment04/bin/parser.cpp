@@ -62,7 +62,7 @@ struct ASTNode {
     std::optional<std::string> expression;
 };
 
-// Helper: DOS 8.3 Filename Validation
+// DOS 8.3 Filename Validation
 bool isValidDos83(const std::string& str) {
     size_t dot_pos = str.find('.');
     if (dot_pos == std::string::npos) return false;
