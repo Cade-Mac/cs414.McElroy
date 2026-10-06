@@ -1,0 +1,4 @@
+(executable
+ (public_name kv_store)
+ (name main)
+ (libraries kv_store_ocaml.store))

@@ -1,0 +1,2 @@
+(lang dune 3.0)
+(name kv_store_ocaml)

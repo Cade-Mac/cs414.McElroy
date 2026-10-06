@@ -1,0 +1,3 @@
+(library
+ (name store)
+ (public_name kv_store_ocaml.store))
