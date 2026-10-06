@@ -13,6 +13,8 @@ let () =
   let initial = set "x" "10" empty in
   let tx_fail s =
     let s' = set "x" "20" s in
+    (* Prefixing with an underscore (_s'') tells the OCaml compiler that this *)
+    (* variable is intentionally unused, suppressing warning 26 during build. *)
     let _s'' = set "y" "30" s' in
     Error "Abort transaction"
   in
