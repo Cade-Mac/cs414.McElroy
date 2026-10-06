@@ -13,7 +13,7 @@ let () =
   let initial = set "x" "10" empty in
   let tx_fail s =
     let s' = set "x" "20" s in
-    let s'' = set "y" "30" s' in
+    let _s'' = set "y" "30" s' in
     Error "Abort transaction"
   in
   let final_store = run_transaction tx_fail initial in
