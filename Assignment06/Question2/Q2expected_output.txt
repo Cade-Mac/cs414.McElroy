@@ -1,0 +1,60 @@
+Test 1: empty zipper
+  PASS: empty is true
+  PASS: focus is None
+  PASS: front is None
+  PASS: back is None
+  PASS: move_left on empty stays empty
+  PASS: move_right on empty stays empty
+
+Test 2: one item
+  list = [7], focus = 7, front = 7, back = 7
+  PASS: empty is false
+  PASS: focus is 7
+  PASS: front is 7
+  PASS: back is 7
+
+Test 3: push_back builds the list in order
+  list = [1; 2; 3], focus = 1, front = 1, back = 3
+  PASS: list is [1; 2; 3]
+  PASS: focus stays on first item
+  PASS: front is 1
+  PASS: back is 3
+
+Test 4: push_front adds to the left end
+  list = [0; 1; 2; 3], focus = 1, front = 0, back = 3
+  PASS: list is [0; 1; 2; 3]
+  PASS: front is 0
+  PASS: focus did not move
+
+Test 5: moving the focus
+  list = [10; 20; 30; 40; 50], focus = 10, front = 10, back = 50
+  PASS: move_right -> 20
+  PASS: move_right twice -> 40
+  list = [10; 20; 30; 40; 50], focus = 40, front = 10, back = 50
+  PASS: move_left -> 30
+  PASS: list order unchanged
+  PASS: front still 10
+  PASS: back still 50
+
+Test 6: moving past the ends does nothing
+  PASS: move_left at left end stays on 1
+  PASS: reached right end
+  PASS: move_right at right end stays on 3
+
+Test 7: pushing while focus is in the middle
+  list = [1; 2; 3; 4; 5], focus = 3, front = 1, back = 5
+  PASS: list is [1; 2; 3; 4; 5]
+  PASS: focus still 3
+  PASS: front is 1
+  PASS: back is 5
+
+Test 8: the type works for any element type
+  PASS: string focus
+  PASS: string front
+  PASS: string back
+
+Test 9: old versions are not changed
+  PASS: original focus still 1
+  PASS: new version focus is 2
+
+All tests passed.

@@ -1,0 +1,34 @@
+Test 1: empty tree
+  PASS: empty() is true
+  PASS: size() is 0
+  PASS: inorder is empty
+  PASS: contains(5) is false
+
+Test 2: integer tree
+  Inorder:   20 30 40 50 60 70 80 
+  Preorder:  50 30 20 40 70 60 80 
+  Postorder: 20 40 30 60 80 70 50 
+  PASS: inorder
+  PASS: preorder
+  PASS: postorder
+  PASS: size() is 7
+  PASS: empty() is false
+  PASS: contains(60) is true
+  PASS: contains(65) is false
+
+Test 3: duplicates are ignored
+  PASS: size() still 7
+
+Test 4: callback traversal
+  Inorder via callback: 20 30 40 50 60 70 80 
+  PASS: sum of values is 350
+
+Test 5: sorted input makes a right-leaning chain
+  PASS: preorder 1..5
+  PASS: postorder 5..1
+
+Test 6: string tree
+  Inorder:   apple banana kiwi mango zebra 
+  PASS: strings in alphabetical order
+
+All tests passed.
