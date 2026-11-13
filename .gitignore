@@ -78,3 +78,5 @@ _build/
 *.cmo
 *.o
 *.a
+Assignment08/cpp/build/
+Assignment08/ocaml/_build/
